@@ -79,7 +79,7 @@ public class orquestador extends DAO {
                             Libros.consultarlibros1();
                             Libros.editarlibroxAutor();
                         } catch (Exception e) {
-                            System.out.println(e);
+                            System.out.println(e.getMessage());
                         }
                         break;
                     case "c":
@@ -110,7 +110,7 @@ public class orquestador extends DAO {
     public void submenuC() throws Exception {
         try {
             System.out.println("*******************************************************");
-            System.out.println("Ha ingresado al Submenu opcion 'B' >>>Indique una <LETRA>");
+            System.out.println("Ha ingresado al Submenu opcion 'C' >>>Indique una <LETRA>");
             System.out.println("*******************************************************");
 
             while (true) {

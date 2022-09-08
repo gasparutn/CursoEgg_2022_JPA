@@ -2,14 +2,11 @@ package Servicios;
 
 import DaoLibreria.DAO;
 import entidades.Libro;
-import static entidades.Libro_.isbn;
-
 import java.util.Collection;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 
@@ -74,39 +71,41 @@ public class serviLibro extends DAO {
                 if (Laux != null) {
                     System.out.println("Ya existe ese libro, ingrese otro");
                 }
-            } while (Laux != null); // condicion princial de que no exista un mismo ISBN en la consulta Query
+            } while (Laux != null); // condicion principal de que no exista un mismo ISBN en la consulta Query
             L1.setTitulo(AuxTitulo);
 
             System.out.println("Ingrese el año de publicacion: ");
             L1.setAnio(leer.nextInt());
             leer.nextLine();
+
             System.out.println("Ingrese cuanto ejemplares hay: ");
             L1.setEjemplares(leer.nextInt());
             leer.nextLine();
+            do {
+                System.out.println("Ingrese el numero de ejemplares prestados: ");
+                L1.setEjemplares_Prestados(leer.nextInt());
 
-            System.out.println("Ingrese el numero de ejemplares prestados: ");
-            L1.setEjemplares_Prestados(leer.nextInt());
+                leer.nextLine();
+                if (L1.getEjemplares() < L1.getEjemplares_Prestados()) {
+                    // throw new Exception("No chavon, no podes prestar mas de los que tenes");
+                }
 
-            leer.nextLine();
-            if (L1.getEjemplares() < L1.getEjemplares_Prestados()) {
-                throw new Exception("No chavon, no podes prestar mas de los que tenes");
-            }
+                if (L1.getEjemplares_Prestados() == 0) {
+                    L1.setEjemplares_Restantes(L1.getEjemplares());
+                    System.out.println("No se presto ningun ejemplar ");
 
-            if (L1.getEjemplares_Prestados() == 0) {
-                L1.setEjemplares_Restantes(L1.getEjemplares());
-                System.out.println("No se presto ningun ejemplar ");
+                } else {
+                    L1.setEjemplares_Restantes(L1.getEjemplares() - L1.getEjemplares_Prestados());
+                }
+                System.out.println("Los ejemplares restantes son: " + L1.getEjemplares_Restantes());
 
-            } else {
-                L1.setEjemplares_Restantes(L1.getEjemplares() - L1.getEjemplares_Prestados());
-            }
-            System.out.println("Los ejemplares restantes son: " + L1.getEjemplares_Restantes());
-
-            if (L1.getEjemplares_Restantes() > 0) {
-                L1.setAlta(true);
-            } else {
-                L1.setAlta(false);
-            }
-
+                if (L1.getEjemplares_Restantes() >= 0) {
+                    L1.setAlta(true);
+                } else {
+                    L1.setAlta(false);
+                    System.out.println("\n<<<<NO PUEDE PRESTAR MAS DE LO QUE TIENE>>>>, INGRESE UN N° VALIDO \n");
+                }
+            } while (L1.getEjemplares_Restantes() < 0);
             L1.setAutor(sa.libroAutor());
             L1.setEditorial(ed.libroEditorial());
 
@@ -233,7 +232,7 @@ public class serviLibro extends DAO {
     public void editarlibroTI() {
         try {
             System.out.print("Ingrese el nombre del libro que desea modificar:");
-            String modificar = leer.nextLine();
+            String modificar = leer.nextLine(); // variable que paso por referencia a la Query en su SET PARAMETRER
 
             Libro libroED = (Libro) em.createQuery("Select l" + " FROM Libro l"
                     + " WHERE l.titulo = :titulo").setParameter("titulo", modificar).getSingleResult();
@@ -260,27 +259,27 @@ public class serviLibro extends DAO {
 
             int v1 = 1; // variable de eleccion del libro
             // CODIGO PARA EXTRAER UN OBJERO DE UN ARREGLO PARA eliminar, modificar etc.
-            if (librosAU.isEmpty()) { // significa que la coleccion esta vacia.
-                throw new Exception("No existe autor");
+            if (librosAU.isEmpty()) { // <<Devuelve el valor 1 (true) si hay un campo vacío; de lo contrario, devuelve el valor 0 (false).
+                throw new Exception("No existe autor"); //Si esta vacia, capto la Exception y arrojo mensaje
             }
             System.out.println("Los libros encontrados son: \n");
             for (Libro libroUNI : librosAU) {
                 System.out.println(String.format("%d. %s", v1, libroUNI.getTitulo()));
-                v1++;
+                v1++;// muesto los libros ENUMARADOS por titulo que estan en la base
             }
-            int v2 = 1; // contador de libros 
+            int v2 = 1; // creo variable contador de libros 
             System.out.println("");
             System.out.println("Ingrese el numero del Libro que quiere modificar ");
-            v1 = leer.nextInt();
+            v1 = leer.nextInt(); // Selecciono el numero de libro que deseo modificar
             leer.nextLine();
-            Libro libroaux = new Libro();
+            Libro libroaux = new Libro(); //creo un LIBROAUX para iterar el libro selecionado con el consultado en la Query
             for (Libro aux : librosAU) {
-                if (v1 == v2) {
-                    libroaux = aux;
+                if (v1 == v2) {  // si el Autor V1(selecciono) es igual a la posicion en donde se encuentra el libro encontrado
+                    libroaux = aux; // el objeto creado es igual al libro encontrado
                 }
                 v2++;
             }
-            libroaux.setAutor(sa.crearAutor());
+            libroaux.setAutor(sa.crearAutor()); // seteo el libro por AUTOR
 
             em.getTransaction().begin();
             em.merge(libroaux);
