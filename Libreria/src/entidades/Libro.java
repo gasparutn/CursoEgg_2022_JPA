@@ -23,7 +23,18 @@ public class Libro implements Serializable {
 
     public Libro() {
     }
-
+    @Override
+    public Libro clone() throws CloneNotSupportedException{
+        Libro titulos=null;
+        try{
+            titulos=(Libro)super.clone();
+        }catch(CloneNotSupportedException ex){
+            System.out.println(" no se puede duplicar");
+        }
+        return titulos;
+        
+    }
+    
     public Libro(long isbn, String titulo, Integer anio, Integer ejemplares, Integer ejemplares_Prestados, Integer ejemplares_Restantes, boolean alta, Autor autor, Editorial editorial) {
         this.isbn = isbn;
         this.titulo = titulo;
@@ -111,12 +122,6 @@ public class Libro implements Serializable {
 
     @Override
     public String toString() {
-        return "Libro{" + "isbn=" + isbn + ", titulo=" + titulo + ", anio=" + anio + ", ejemplares=" + ejemplares + ", ejemplares_Prestados=" + ejemplares_Prestados + ", ejemplares_Restantes=" + ejemplares_Restantes + ", alta=" + alta + ", autor=" + autor + ", editorial=" + editorial + '}';
+        return "Libro{" + " isbn= " + isbn + ", titulo= " + titulo + ", anio=" + anio + ", ejemplares= " + ejemplares + ", ejemplares_Prestados= " + ejemplares_Prestados + ", ejemplares_Restantes=" + ejemplares_Restantes + ", alta=" + alta + ", autor=" + autor + ", editorial=" + editorial + '}';
     }
-
-    
-    
-
-    
-
 }

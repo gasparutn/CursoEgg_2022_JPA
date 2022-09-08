@@ -7,7 +7,6 @@ import javax.persistence.Id;
 
 @Entity
 public class Editorial implements Serializable {
-
     
     @Id
     private String id;
@@ -42,8 +41,6 @@ public class Editorial implements Serializable {
         this.alta = alta;
     }
     
-    
-
     public void setId(String id) {
         this.id = id;
     }
@@ -70,7 +67,7 @@ public class Editorial implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Editorial[ id=" + id + " ]";
+        return "> Editorial id> " + id + " nombre: " +nombre + "]";
     }
     
 }
