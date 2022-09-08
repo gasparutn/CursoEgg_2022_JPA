@@ -10,7 +10,7 @@ public class Autor implements Serializable {
     @Id
     private String id;
     private String nombre;
-    private boolean alta=true;
+    private boolean alta = true;
 
     public Autor() {
     }
@@ -49,5 +49,4 @@ public class Autor implements Serializable {
     public String toString() {
         return ">>> AUTOR NOMBRE= " + nombre + ", id N> " + id + ", alta= " + alta + '}';
     }
-             
 }

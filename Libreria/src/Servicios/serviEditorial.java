@@ -20,12 +20,10 @@ public class serviEditorial extends DAO {
     EntityManager em = emf.createEntityManager();
 
     public Editorial libroEditorial() throws Exception {
-
         try {
 
             Editorial L1edit = crearEditorial();
             
-
             em.getTransaction().begin();
             em.persist(L1edit);
             em.getTransaction().commit();

@@ -35,7 +35,6 @@ public class orquestador extends DAO {
                     case "a":
                         Libros.crearlibro();
                         Libros.consultarlibros2();
-
                         break;
                     case "b":
                         submenuB();
@@ -59,7 +58,6 @@ public class orquestador extends DAO {
             System.out.println("*******************************************************\n");
 
             while (true) {
-
                 System.out.println("a. Modificar por TITULO: ");
                 System.out.println("b. Modificar por NOMBRE AUTOR: ");
                 System.out.println("c. Modificar por nombre IDITORIAL: ");
@@ -75,21 +73,19 @@ public class orquestador extends DAO {
                     case "a":
                         Libros.consultarlibros1();
                         Libros.editarlibroTI();
-
                         break;
                     case "b":
                         try {
-                        Libros.consultarlibros1();
-                        Libros.editarlibroxAutor();
-                        
+                            Libros.consultarlibros1();
+                            Libros.editarlibroxAutor();
                         } catch (Exception e) {
                             System.out.println(e);
                         }
                         break;
                     case "c":
-                        try{
-                        Libros.consultarlibros1();
-                        Libros.editarlibroxNombreEDIT();
+                        try {
+                            Libros.consultarlibros1();
+                            Libros.editarlibroxNombreEDIT();
                         } catch (Exception e) {
                             System.out.println(e);
                         }
@@ -100,7 +96,7 @@ public class orquestador extends DAO {
                     case "e":
 
                         break;
-                   
+
                     default:
                         System.out.println("Ha ingresa una letra incorrecta");
                 }
@@ -133,21 +129,19 @@ public class orquestador extends DAO {
                     case "a":
                         Libros.consultarlibros1();
                         Libros.eliminarlibroxti();
-
                         break;
                     case "b":
                         Libros.consultarlibros1();
                         Libros.eliminarlibroxisbn();
-
                         break;
                     case "c":
                         Libros.consultarlibros1();
                         Libros.editarlibroxAutor();
-
+                        break;
                     case "d":
                         Libros.consultarlibros1();
                         LibroE.eliminarlibroxeditorial();
-
+                        break;
                     case "e":
 
                         break;

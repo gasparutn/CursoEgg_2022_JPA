@@ -54,7 +54,6 @@ public class serviAutor {
 
     public void buscarAutorxNombre() throws Exception {
         try {
-
             System.out.print("Ingrese el Nombre del autor:");
             String busqAutor = leer.nextLine();
             System.out.println("*************************");
@@ -62,9 +61,7 @@ public class serviAutor {
             for (Autor listautor : libroAutor) {
                 System.out.println(listautor.toString());
             }
-
             System.out.println("*************************\n");
-
         } catch (NoResultException e) {
             System.out.println("No se encontro el autor");
         } catch (Exception e) {
@@ -84,7 +81,6 @@ public class serviAutor {
             em.getTransaction().begin();
             em.remove(libroautor);
             em.getTransaction().commit();
-
         } catch (Exception e) {
             throw e;
         }
@@ -112,7 +108,6 @@ public class serviAutor {
         } else {
             System.out.println("El autor ya existe");
         }
-        
         return aux;
     }
 }

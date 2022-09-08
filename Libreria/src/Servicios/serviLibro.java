@@ -181,7 +181,6 @@ public class serviLibro extends DAO {
 
     public void buscarlibroxisbn() {
         try {
-
             System.out.print("Ingrese el ID ISBN del libro que desea buscar:");
             long busqueISBN = leer.nextLong();
 
@@ -199,7 +198,6 @@ public class serviLibro extends DAO {
 
     public void eliminarlibroxti() {
         try {
-
             System.out.print("Ingrese el NOMBRE del libro que desea borrar:");
             String borrarti = leer.nextLine();
 
@@ -217,7 +215,6 @@ public class serviLibro extends DAO {
 
     public void eliminarlibroxisbn() {
         try {
-
             System.out.print("Ingrese el ID ISBN del libro que desea borrar:");
             long borrarid = leer.nextLong();
 
@@ -235,7 +232,6 @@ public class serviLibro extends DAO {
 
     public void editarlibroTI() {
         try {
-
             System.out.print("Ingrese el nombre del libro que desea modificar:");
             String modificar = leer.nextLine();
 
@@ -257,7 +253,6 @@ public class serviLibro extends DAO {
     public void editarlibroxAutor() throws Exception {
 
         try {
-
             System.out.print("Ingrese el Autor del libro que desea modificar:");
             String modificar2 = leer.nextLine();
 

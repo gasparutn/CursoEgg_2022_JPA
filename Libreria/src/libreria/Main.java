@@ -9,14 +9,14 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Scanner leer = new Scanner(System.in).useDelimiter("\n");
-        
+
         try {
 
             serviLibro BiblioLibro = new serviLibro();
             serviEditorial BiblioEdit = new serviEditorial();
             serviAutor BiblioAuto = new serviAutor();
             orquestador submenu1 = new orquestador();
-            
+
             while (true) {
 
                 System.out.println(">>>>>>>INGRESE LA OPCION DE CONSULTA QUE DESEE INDICANDO EL NUMERO<<<<<<<");
@@ -34,7 +34,7 @@ public class Main {
                 int menu = 0;
                 menu = leer.nextInt();
                 System.out.println("");
-                
+
                 if (menu < 1 || menu > 9) {
                     do {
                         System.out.print("Por favor, ingrese una opcion correcta > ");
@@ -49,7 +49,6 @@ public class Main {
 
                     case 1:
                         BiblioLibro.crearlibro();
-                        
                         break;
                     case 2:
                         submenu1.submenu();
@@ -73,12 +72,11 @@ public class Main {
                     case 7:
                         BiblioLibro.consultarlibros1();
                         BiblioEdit.buscarLibroxEditorial();
-                       
                         break;
                     case 8:
                         BiblioLibro.consultarlibros1();
                         break;
-                        
+
                     default:
                         System.out.println("*****Ha ingresado un numero incorrecto******\n     >>>>VUELVA A INTENTAR<<<<\n");
                 }
